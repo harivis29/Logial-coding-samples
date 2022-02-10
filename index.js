@@ -368,3 +368,22 @@ promiseAll([firstPromise, secondPromise])
   .catch((error) => {
     console.log(error)
   })
+
+
+// Get weighted Sum from Array - multiply item with depth 
+// [1, 2, [3, 4, [5], 6], 7]
+// result = 1 * 1 + 2 * 1 + ( 3 * 2 + 4 * 2 + ( 5 * 3) + 6 * 2) + 7 * 1
+function sum(arr, d = 1, add = 0) {
+
+for(let i = 0; i < arr.length; i++) {
+    if(Array.isArray(arr[i])){
+        add = sum(arr[i], d + 1, add)
+    }
+    else {
+       add = add + arr[i] * d
+    }
+    }
+return add
+}
+
+console.log(sum([1,2,[3,4, [ 6, [5], 7 ] ],5]))
