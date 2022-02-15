@@ -382,3 +382,65 @@ return add
 }
 
 console.log(sum([1,2,[3,4, [ 6, [5], 7 ] ],5]))
+
+// Javascript Hoisting
+a(); // bye
+
+console.log(one); // undefined
+
+var one = 1;
+var one = 2;
+
+function a() {
+  console.log('hi')
+}
+
+function a() {
+  console.log('bye')
+}
+
+a(); // bye
+
+
+console.log(one); // 2 
+
+
+
+function bigBrother(){
+
+  function littleBrother() {
+    return 'it is me!';
+  }
+  
+  return littleBrother();
+  
+  function littleBrother() {
+    return 'no me!';
+  }
+}
+
+console.log(bigBrother(), "----output --- 'no me' -- due to hoisting");
+
+// Optimal way to sort array with maintaining key pointer
+const arr = [0,1,0,1,1,0];
+
+function sort(arr = []) {
+
+ if(arr && arr.length > 1) {
+  let j = -1;
+   for(let i = 0; i < arr.length; i++) {
+    let item = 0;
+    if(j === -1 && arr[i]) {
+      j = i; // 1
+    }
+  else if(arr[i] < arr[j]){
+    let temp = arr[j];
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+    j++  
+    }
+ }
+ }
+ return arr;
+}
+
+console.log(sort(arr)); 
