@@ -23,24 +23,19 @@ function flattenArray(input) {
   
   console.log(flattenArray(arr));
   
-  // Recursive flatten array
-  function flattenArrayDeep(arr, d = 1) {
-    if(d > 0) {
-        return arr.reduce((acc, val) => {
-        if(Array.isArray(val)) {
-          return acc.concat(_flatDeep(val, d - 1))
+function flatten(ary) {
+    var ret = [];
+    for(var i = 0; i < ary.length; i++) {
+        if(Array.isArray(ary[i])) {
+            ret = ret.concat(flatten(ary[i]));
+        } else {
+            ret.push(ary[i]);
         }
-        else {
-          return acc.concat(val)
-        }
-       }, []);
     }
-    else {
-    return arr.slice();
-    }
-  }
-  
-  console.log(flattenArrayDeep(arr, 1));
+    return ret;
+}
+
+flatten([[[[[0]], [1]], [[[2], [3]]], [[4], [5]]]]) // [0, 1, 2, 3, 4, 5]
 
   // addWithCurry(1)(2)(3)...(n)()
   function addWithCurry(a){
