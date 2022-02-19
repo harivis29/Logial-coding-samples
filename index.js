@@ -471,3 +471,29 @@ return {
 }
 
 console.log(cal(3).add(2).add(3).mul(3).sub(1).mul(4).val());
+
+const memoize = (func) => {
+  const results = {};
+  return (...args) => {
+    const argsKey = JSON.stringify(args);
+    if (!results[argsKey]) {
+      results[argsKey] = func(...args);
+    }
+    return results[argsKey];
+  };
+};
+
+
+const clumsysquare = (num) => {
+    let result = 0;
+    for (let i = 1; i <= num; i++) {
+        for (let j = 1; j <= num; j++) {
+            result++;
+        }
+    }
+    return result;
+};
+
+const memoizedFn = memoize(clumsysquare);
+
+console.log(memoizedFn(9666));
