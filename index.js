@@ -497,3 +497,23 @@ const clumsysquare = (num) => {
 const memoizedFn = memoize(clumsysquare);
 
 console.log(memoizedFn(9666));
+
+// function composition of any number of functions
+const compose = (...fns) => x => fns.reduceRight((y, f) => f(y), x); 
+// OR
+const compose = function(...fns) {
+
+return function(...args) {
+    return fns.reduceRight((acc, fn, index, arr) => {
+      return fn(acc);
+    }, args)
+  }
+} 
+
+
+const double = x => x * 2
+const square = x => x * x
+
+// function composition
+var output_final = compose(square, double)(2);
+console.log(output_final);
