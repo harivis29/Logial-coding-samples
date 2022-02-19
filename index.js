@@ -517,3 +517,24 @@ const square = x => x * x
 // function composition
 var output_final = compose(square, double)(2);
 console.log(output_final);
+
+// Create Own JS Library 
+// Modular design
+
+var Foo = (function() {
+    var _thisIsAPrivateVar = "private";
+
+    function thisIsAPrivateMethod() {
+    	console.log(_thisIsAPrivateVar)
+    }
+
+    return {
+        thisIsAPublicMethod : function() {
+        thisIsAPrivateMethod();
+            // can still access the "private" variable and method
+        }
+    };
+
+})();
+
+Foo.thisIsAPublicMethod();
