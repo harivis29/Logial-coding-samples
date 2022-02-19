@@ -443,4 +443,31 @@ function sort(arr = []) {
  return arr;
 }
 
-console.log(sort(arr)); 
+console.log(sort(arr));
+
+function cal(a) {
+
+return {
+	result: a,
+	add: function(b) {
+  	this.result += b;
+    return this;
+  },
+  
+  mul: function(c) {
+  this.result *= c;
+   return this;
+  },
+  
+  sub: function(d) {
+  this.result -= d;
+   return this;
+  },
+  
+  val: function() {
+   return this.result;
+  }
+}
+}
+
+console.log(cal(3).add(2).add(3).mul(3).sub(1).mul(4).val());
