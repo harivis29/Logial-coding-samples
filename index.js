@@ -652,3 +652,30 @@ function Node(element) {
             return currentNode.element;  
         }
     }
+
+console.log(sum(1,3)(2,3)(3)(4)())
+
+
+function sum(...outerArgs) {
+let outerSum = 0;
+
+if(outerArgs.length > 1) {
+	outerSum = outerArgs.reduce((acc, ar) => acc + ar, 0);
+}
+
+else {
+	outerSum = outerArgs[0];
+}
+
+return function(...innerArgs) {
+  let innerSum =  0;
+
+  if(innerArgs.length > 0) {
+    return sum(innerArgs.reduce((acc, ar) => acc + ar, outerSum));
+  }
+
+  return outerSum
+
+}
+
+}
